@@ -44,6 +44,28 @@ traceroute <DOMAIN-NAME>
  ****************
 ```
 
+## Auto launch script on VPN connection
+
+Add following lines to your ovpn-file: 
+```
+script-security 2
+# run /etc/openvpn/up.sh when the connection is set up
+up /etc/openvpn/up.sh
+```
+
+## Automatically start/restart VPN-connection on any network connected
+
+add following lines to /etc/NetworkManager/dispatcher.d/vpn-up:
+```
+#! /bin/bash
+
+# start VPN connection using Linux NetworkManger CLI
+nmcli con up id "<YOUR-VPN-CONNECTION-NAME>"
+
+# start script if it wasn't set inside ovpn-file
+/etc/openvpn/nat.sh
+```
+
 ## Extras
 
 You can use https://github.com/Angristan/OpenVPN-install/ to setup your own VPN server.
