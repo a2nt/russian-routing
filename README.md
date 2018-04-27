@@ -14,7 +14,7 @@ sudo ./routing.sh
 Use ifconfig to get variables as <GATEWAYIP> (your router IP) and <REGULARINTERFACE> (your network interface name) and set it at the routing.sh
 otherwise script will detect it automatically
 
-### You can add extra domains to auto-detect their IPs and route without VPN
+### You can add extra domains to auto-detect their IPs and route them without VPN
 Just add a line to extra.domains.list.txt with your domain name (without www.)
 ex:
 ```
