@@ -49,8 +49,8 @@ traceroute <DOMAIN-NAME>
 Add following lines to your ovpn-file: 
 ```
 script-security 2
-# run /etc/openvpn/up.sh when the connection is set up
-up /etc/openvpn/up.sh
+# run /etc/openvpn/nat.sh when the connection is set up
+up /etc/openvpn/nat.sh
 ```
 
 ## Automatically start/restart VPN-connection on any network connected
