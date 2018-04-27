@@ -72,7 +72,7 @@ traceroute <DOMAIN-NAME>
 ## routing.sh
 
 Routes servers' traffic without VPN
-##### Yes, you can use it at the rooted device, but it needs to support: bash and dig.  
+#### Yes, you can use it at the rooted device, but it needs to support: bash and dig.  
 
 Must be launched as root after connecting to VPN.
 
