@@ -1,4 +1,4 @@
-# VPN white-list routing
+# VPN bypass white-list routing
 Setup your client VPN and route Russian GOV and ORG services traffic without VPN.
 It's useful to save VPN traffic and to prevent VPN-usage detection.
 
