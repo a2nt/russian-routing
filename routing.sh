@@ -110,3 +110,6 @@ ip route add 81.19.83.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static met
 
 # rambler.com
 ip route add 50.63.202.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+
+# reg.ru
+ip route add 194.58.116.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
