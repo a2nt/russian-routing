@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #########################################################################################################
 # Routes RU-servers traffic without VPN
@@ -23,13 +23,15 @@
 # ****************
 #########################################################################################################
 
-#######################################################################
+#################################################################################
 # Preset your variables otherwise it will be auto-detected 
 
 GATEWAYIP="" # Your regular gateway IP (router IP)
 REGULARINTERFACE="" # Your regular network interface (ex. eth0)
 
-######################################################################
+#################################################################################
+
+DOMAINLIST="./extra.domains.list.txt" # Extra domains you'd like to use without VPN
 
 echo "OpenVPN is connected. Setting up routes ..."
 
@@ -43,7 +45,9 @@ if [ "$REGULARINTERFACE" = "" ]; then
   REGULARINTERFACE=$(route -n | grep 'UG[ \t]' | awk '{print $8}'| sed -n 2p)
 fi
 
+echo -e "\n======================================================================\n"
 echo "Your regular Gateway: " $REGULARINTERFACE "/" $GATEWAYIP
+echo -e "\n======================================================================\n"
 
 # Directs listed IPs using regular gateway
 
@@ -113,3 +117,27 @@ ip route add 50.63.202.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static me
 
 # reg.ru
 ip route add 194.58.116.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+
+echo -e "\n======================================================================\n"
+echo "Forwarding extra domains without VPN"
+echo -e "\n======================================================================\n"
+
+cat "$DOMAINLIST" | while read DOMAIN
+do
+	IPS=$(dig "$DOMAIN" www.$DOMAIN | awk '{print $5}' | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | sed -r 's/\.[0-9]{1,3}$/.0\/24/')
+
+	echo -e "+++ $DOMAIN +++\n$IPS"
+
+	if [ "$IPS" != "" ]; then
+		while read -r WIP
+		do
+			if [ "$WIP" != "" ]; then
+				ip route add "$WIP" via "$GATEWAYIP" dev "$REGULARINTERFACE" proto static metric 700
+			fi
+		done < <(printf '%s\n' "$IPS")
+	fi
+
+	echo -e "\n+++++++++++++++++++++++++++++++++++++++\n"
+done
+
+echo "========================= DONE! ========================="

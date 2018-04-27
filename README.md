@@ -14,6 +14,15 @@ sudo ./routing.sh
 Use ifconfig to get variables as <GATEWAYIP> (your router IP) and <REGULARINTERFACE> (your network interface name) and set it at the routing.sh
 otherwise script will detect it automatically
 
+### You can add extra domains to auto-detect their IPs and route without VPN
+Just add a line to extra.domains.list.txt with your domain name (without www.)
+ex:
+```
+the-village.ru
+```
+
+(Don't forget to keep extra.domains.list.txt at the same directory with routing.sh)
+
 ### You can add extra server IPs using
 ```
 dig <DOMAIN-NAME>
@@ -45,17 +54,19 @@ traceroute <DOMAIN-NAME>
 ```
 
 ## Auto launch script on VPN connection
+Copy routing.sh and extra.domains.list.txt to /etc/openvpn/
 
 Add following lines to your ovpn-file: 
 ```
 script-security 2
-# run /etc/openvpn/nat.sh when the connection is set up
-up /etc/openvpn/nat.sh
+# run /etc/openvpn/routing.sh when the connection is set up
+up /etc/openvpn/routing.sh
 ```
 
 ## Automatically start/restart VPN-connection on any network connected
+Copy routing.sh and extra.domains.list.txt to /etc/openvpn/
 
-add following lines to /etc/NetworkManager/dispatcher.d/vpn-up:
+Add following lines to /etc/NetworkManager/dispatcher.d/vpn-up:
 ```
 #! /bin/bash
 
@@ -63,7 +74,7 @@ add following lines to /etc/NetworkManager/dispatcher.d/vpn-up:
 nmcli con up id "<YOUR-VPN-CONNECTION-NAME>"
 
 # start script if it wasn't set inside ovpn-file
-/etc/openvpn/nat.sh
+/etc/openvpn/routing.sh
 ```
 
 ## Extras
