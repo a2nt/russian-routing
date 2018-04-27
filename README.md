@@ -1,61 +1,17 @@
-# VPN bypass white-list routing
-Setup your client VPN and route Russian GOV and ORG services traffic without VPN.
+# VPN bypass white-list client side routing
+
+Setup your client VPN and route Russian GOV, ORG services and listed websites traffic without VPN.
 It's useful to save VPN traffic and to prevent VPN-usage detection.
 
-## routing.sh
+## INSTALATION (Linux, see details bellow for another OS)
 
-Routes RU-servers traffic without VPN
-Must be launched as root after connecting to VPN
-
-ex:
 ```
-sudo ./routing.sh
-```
-
-Use ifconfig to get variables as <GATEWAYIP> (your router IP) and <REGULARINTERFACE> (your network interface name) and set it at the routing.sh
-otherwise script will detect it automatically
-
-### You can add extra domains to auto-detect their IPs and route them without VPN
-Just add a line to extra.domains.list.txt with your domain name (without www.)
-ex:
-```
-the-village.ru
-```
-
-(Don't forget to keep extra.domains.list.txt at the same directory with routing.sh)
-
-### You can add extra server IPs using
-```
-dig <DOMAIN-NAME>
-```
-or https://toolbox.googleapps.com/apps/dig/
-
-To add routing for a specific IP use following syntax:
-```
-ip route add <RU-SERVER-IP> via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
-```
-
-### You can test if it was successful using:
-```
-traceroute <DOMAIN-NAME>
-```
-
-#### Result will look this way:
-```
-1  _gateway (<GATEWAYIP>)  *** ms  *** ms  *** ms
-2 *******************************
- ****************
- ```
-
-#### Wrong result will look this way:
-```
-1  _gateway (<YOUR-VPN-IP>)  *** ms  *** ms  *** ms
-2 *******************************
- ****************
+git clone https://github.com/a2nt/russian-routing.git
+cd russian-routing
+sudo ./install.sh
 ```
 
 ## Auto launch script on VPN connection
-Copy routing.sh and extra.domains.list.txt to /etc/openvpn/
 
 Add following lines to your ovpn-file: 
 ```
@@ -64,8 +20,7 @@ script-security 2
 up /etc/openvpn/routing.sh
 ```
 
-## Automatically start/restart VPN-connection on any network connected
-Copy routing.sh and extra.domains.list.txt to /etc/openvpn/
+## Automatically start/restart VPN-connection on any network connected (Linux)
 
 Add following lines to /etc/NetworkManager/dispatcher.d/vpn-up:
 ```
@@ -76,6 +31,79 @@ nmcli con up id "<YOUR-VPN-CONNECTION-NAME>"
 
 # start script if it wasn't set inside ovpn-file
 /etc/openvpn/routing.sh
+```
+
+## USAGE
+
+Add extra domain name (See bellow for details):
+```
+sudo nano /etc/openvpn/extra.domains.list.txt
+```
+
+Relaunch routing.sh
+```
+sudo /etc/openvpn/routing.sh
+```
+
+## TESTING
+
+### You can test if it was successful using:
+
+```
+traceroute <DOMAIN-NAME>
+```
+
+#### Result will look this way:
+
+```
+1  _gateway (<GATEWAYIP>)  *** ms  *** ms  *** ms
+2 *******************************
+ ****************
+ ```
+
+#### Wrong result will look this way:
+
+```
+1  _gateway (<YOUR-VPN-IP>)  *** ms  *** ms  *** ms
+2 *******************************
+ ****************
+```
+
+## routing.sh
+
+Routes servers' traffic without VPN
+##### Yes, you can use it at the rooted device, but it needs to support: bash and dig.  
+
+Must be launched as root after connecting to VPN.
+
+ex:
+```
+sudo ./routing.sh
+```
+
+Use ifconfig to get variables as <GATEWAYIP> (your router IP) and <REGULARINTERFACE> (your network interface name) and set it at the routing.sh
+otherwise script will detect it automatically
+
+### You can add extra domains to auto-detect their IPs and route them without VPN
+Just add a line to extra.domains.list.txt with desired domain name (don't add www.)
+ex:
+```
+the-village.ru
+```
+
+(Don't forget to keep extra.domains.list.txt at the same directory with routing.sh)
+
+### You can add extra server IPs using
+
+```
+dig <DOMAIN-NAME>
+```
+or https://toolbox.googleapps.com/apps/dig/
+
+To add routing for a specific IP use following syntax:
+sudo nano /etc/openvpn/routing.sh
+```
+ip route add <RU-SERVER-IP> via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ```
 
 ## Extras
