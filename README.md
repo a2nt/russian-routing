@@ -3,6 +3,9 @@
 Setup your client VPN and route Russian GOV, ORG services and listed websites traffic without VPN.
 It's useful to save VPN traffic and to prevent VPN-usage detection.
 
+This script is mend to setup routing. It doesn't sets up your VPN-client or VPN-server.
+See details bellow.
+
 ## INSTALATION (Linux, see details bellow for another OS)
 
 ```
@@ -72,7 +75,7 @@ traceroute <DOMAIN-NAME>
 ## routing.sh
 
 Routes servers' traffic without VPN
-#### Yes, you can use it at the rooted device, but it needs to support: bash and dig.  
+#### Yes, you can use it at the rooted device, but it needs to support: bash, dig and of course VPN-client.  
 
 Must be launched as root after connecting to VPN.
 
