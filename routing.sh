@@ -53,6 +53,30 @@ echo -e "\n=====================================================================
 
 # VK.com
 ip route add 87.240.0.0/16 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 87.240.128.0/18 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 93.186.224.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 93.186.232.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.192.0/20 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+
+# odnoklassniki.ru
+ip route add 62.105.149.64/26 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 81.176.227.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 81.177.30.0/25 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 81.177.140.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 81.177.143.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 81.177.156.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 89.111.19.141 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 89.249.18.249 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 109.238.244.96/27 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 195.68.188.128/25 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 195.218.169.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 195.222.187.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 195.239.106.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 212.44.139.64/26 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 213.33.198.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 213.221.7.64/26 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 217.20.144.0/20 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 217.106.230.128/26 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 
 # mail.ru
 ip route add 5.61.16.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
