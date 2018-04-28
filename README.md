@@ -102,6 +102,7 @@ the-village.ru
 dig <DOMAIN-NAME>
 ```
 or https://toolbox.googleapps.com/apps/dig/
+or search for networks by ORG: https://bgp.he.net/search?search%5Bsearch%5D=VKONTAKTE&commit=Search
 
 To add routing for a specific IP use following syntax:
 sudo nano /etc/openvpn/routing.sh

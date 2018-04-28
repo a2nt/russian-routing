@@ -50,13 +50,28 @@ echo "Your regular Gateway: " $REGULARINTERFACE "/" $GATEWAYIP
 echo -e "\n======================================================================\n"
 
 # Directs listed IPs using regular gateway
+# search for networks by ORG: https://bgp.he.net/search?search%5Bsearch%5D=VKONTAKTE&commit=Search
+# or using dig: https://toolbox.googleapps.com/apps/dig/
 
 # VK.com
 ip route add 87.240.0.0/16 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 87.240.128.0/18 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 93.186.224.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 93.186.232.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
-ip route add 95.142.192.0/20 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.213.0.0/18 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.207.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.206.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.204.0/23	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.203.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.202.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.201.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.192.0/21	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 95.142.192.0/20	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 185.32.251.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 185.32.250.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 185.32.248.0/23	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 185.32.248.0/22	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 185.29.130.0/24	via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 
 # odnoklassniki.ru
 ip route add 62.105.149.64/26 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
@@ -92,10 +107,12 @@ ip route add 95.163.248.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static m
 ip route add 128.140.168.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 178.22.88.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 178.237.16.0/20 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 178.237.29.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 185.5.136.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 185.6.244.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 185.16.148.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 185.16.244.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+
 ip route add 188.93.56.0/21 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 194.186.63.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 195.211.20.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
