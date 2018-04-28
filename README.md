@@ -48,6 +48,13 @@ Relaunch routing.sh
 sudo /etc/openvpn/routing.sh
 ```
 
+## ISSUES
+There's a list of Russian hosters and providers networks.
+We think they doesn't respect privacy so we'd like to by-pass it.
+
+It's very long list, some of them are duplicated, but that's ok.
+Just remove it if you need to make the script work faster or your router doesn't support long routing tables.
+
 ## TESTING
 
 ### You can test if it was successful using:
