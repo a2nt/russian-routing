@@ -3,6 +3,8 @@
 Setup your client VPN and route Russian GOV, ORG services and listed websites traffic without VPN.
 It's useful to save VPN traffic and to prevent VPN-usage detection.
 
+Also this script routes some video streaming services without VPN to save traffic and reach better speed.
+
 This script is mend to setup routing. It doesn't sets up your VPN-client or VPN-server.
 See details bellow.
 

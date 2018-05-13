@@ -177,6 +177,20 @@ ip route add 185.85.12.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static me
 ip route add 185.85.14.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 ip route add 185.85.15.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
 
+# by-pass video streaming services
+
+echo -e "\n======================================================================\n"
+echo "Forwarding video streaming services without VPN"
+echo -e "\n======================================================================\n"
+
+# streamguard.cc
+ip route add 31.220.0.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 31.220.40.0/23 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 103.109.100.0/22 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 172.111.252.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 185.169.253.0/24 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+ip route add 198.144.120.0/23 via $GATEWAYIP dev $REGULARINTERFACE proto static metric 600
+
 echo -e "\n======================================================================\n"
 echo "Forwarding extra domains without VPN"
 echo -e "\n======================================================================\n"
